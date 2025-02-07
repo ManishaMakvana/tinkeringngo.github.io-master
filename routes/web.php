@@ -8,6 +8,12 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
 
+
+
+Route::get('/', function () {
+    return view('home'); // Assuming your Blade file is named home.blade.php
+})->name('home');
+
 // Authentication Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);

@@ -9,7 +9,5 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TeacherFactory extends Factory
 {
-    protected $table = 'teachers';
-
-    protected $fillable = ['teachername', 'teacherid', 'password', 'email'];
+    
 }

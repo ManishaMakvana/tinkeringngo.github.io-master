@@ -34,6 +34,8 @@ Route::get('/admin/add-module', [ProgramController::class, 'create'])->name('adm
 Route::post('/admin/add-module', [ProgramController::class, 'store'])->name('admin.storeProgram');
 Route::delete('/admin/programs/{id}', [ProgramController::class, 'destroy'])->name('admin.deleteProgram');
 
+
+
 // Admin User Management Routes
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/users/edit/{id}', [AdminController::class, 'editUser'])->name('admin.editUser');
@@ -42,11 +44,6 @@ Route::delete('/admin/users/delete/{id}', [AdminController::class, 'deleteUser']
 
 // Admin Program Management Routes
 Route::get('/admin/modules', [AdminController::class, 'modules'])->name('admin.modules');
-
-
-
-
-
 
 // Admin Authentication Routes
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
@@ -57,7 +54,11 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
 
+
 Route::get('/admin/modules', [ProgramController::class, 'modulesindex'])->name('admin.modules');
+
+
+
 
 // Middleware Group for Admin
 Route::middleware(['admin'])->group(function () {
@@ -70,7 +71,7 @@ Route::delete('/admin/users/delete/{id}', [UserController::class, 'destroy'])->n
 
 
 
-
+//genarte id,password
 
 Route::get('upload-teachers', [TeacherController::class, 'showForm'])->name('teacher.form');
 Route::post('upload-teachers', [TeacherController::class, 'upload'])->name('teacher.upload');
@@ -79,3 +80,9 @@ Route::get('teacher/{id}/edit-password', [TeacherController::class, 'editPasswor
 Route::post('teacher/{id}/update-password', [TeacherController::class, 'updatePassword'])->name('teacher.updatePassword');
 
 Route::get('/teachers/export', [TeacherController::class, 'exportTeachers'])->name('teacher.export');
+
+Route::get('/admin/modules/{id}/edit', [ProgramController::class, 'edit'])->name('admin.modules.edit');
+Route::put('/admin/modules/{id}', [ProgramController::class, 'update'])->name('admin.modules.update');
+
+Route::delete('/admin/modules/{id}', [ProgramController::class, 'destroy'])->name('admin.modules.destroy');
+

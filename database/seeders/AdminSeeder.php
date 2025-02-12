@@ -16,17 +16,29 @@ class AdminSeeder extends Seeder
     public function run()
     {
         // Insert multiple admin records into the admins table
-        Admin::create([
-            'username' => 'manisha',  // First admin username
-            'password' => Hash::make('manisha1')  // First admin hashed password
-        ]);
-
-        Admin::create([
-            'username' => 'admin',  // Second admin username
-            'password' => Hash::make('admin2')  // Second admin hashed password
-        ]);
-
        
+
+
+
+        Admin::updateOrCreate(
+            ['username' => 'manisha'], // Unique field to check
+            [
+                'password' => Hash::make('manisha1'),
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
+        );
+
+        
+        Admin::updateOrCreate(
+            ['username' => 'dhruv'], // Unique field to check
+            [
+                'password' => Hash::make('saidava'),
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
+        );
+
         
     }
 }

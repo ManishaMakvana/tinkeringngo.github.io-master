@@ -13,7 +13,7 @@ class Program extends Model
     protected $table = 'programs';
 
     // Specify the primary key if it is not `id`
-    protected $primaryKey = 'module_id';
+    protected $primaryKey = 'id';
 
     // If the table does not have `created_at` and `updated_at`
     public $timestamps = false;

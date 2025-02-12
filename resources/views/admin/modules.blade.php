@@ -12,7 +12,7 @@
 
 <div class="module-header">
     <h2>Modules List</h2>
-    
+
     <!-- Search Form -->
     <form method="GET" action="{{ route('admin.modules') }}" class="mb-3">
         <div class="input-group">
@@ -69,17 +69,20 @@
                 <td><a href="{{ $program->google_slide }}" target="_blank" class="btn btn-info btn-sm">View</a></td>
                 <td><a href="{{ $program->worksheet }}" target="_blank" class="btn btn-success btn-sm">Download</a></td>
                 <td>
-                    <!-- Edit Button -->
-                    <a href="" class="btn btn-warning btn-sm">Edit</a>
+    <!-- Edit Button -->
+    <a href="{{ route('admin.modules.edit', $program->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                    <!-- Delete Button -->
-                    <form action="" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this module?')">Delete</button>
-                    </form>
-                </td>
+    <form action="{{ route('admin.modules.destroy', $program->id) }}" method="POST" style="display:inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">
+        Delete
+    </button>
+</form>
 
+</td>
+
+            </tr>
         @empty
             <tr>
                 <td colspan="12" class="text-center">No modules found</td>
@@ -94,8 +97,3 @@
 </div>
 
 @endsection
-
-@push('styles')
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    
-@endpush

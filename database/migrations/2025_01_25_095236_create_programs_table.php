@@ -12,22 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('programs', function (Blueprint $table) {
-            $table->id(); // Primary key auto increment
-            $table->unsignedBigInteger('programid'); // Foreign key referencing 'programs' table
-            $table->string('std', 50); // Standard (Class)
-            $table->string('module_id', 50); // Module ID
-            $table->string('document_type'); // Document type
-            $table->string('title'); // Title of the module
-            $table->text('publish_link')->nullable(); // Publish link
-            $table->text('presentation_link')->nullable(); // Presentation link
-            $table->text('youtube_voiceover')->nullable(); // YouTube voiceover link
-            $table->text('google_slide')->nullable(); // Google slide link
-            $table->text('worksheet')->nullable(); // Worksheet link
-            $table->timestamps(); // Timestamps for created_at and updated_at
-
-            // Foreign key constraint referencing 'programs' table
-            $table->foreign('programid')->references('id')->on('programs')->onDelete('cascade');
+            $table->id();
+            $table->unsignedBigInteger('programid'); // Foreign Key
+            $table->string('std', 50);
+            $table->string('module_id', 50);
+            $table->string('document_type');
+            $table->string('title');
+            $table->text('publish_link')->nullable();
+            $table->text('presentation_link')->nullable();
+            $table->text('youtube_voiceover')->nullable();
+            $table->text('google_slide')->nullable();
+            $table->text('worksheet')->nullable();
+            $table->timestamps();
+            
+            // Fixed Foreign Key Reference
+            $table->foreign('programid')->references('id')->on('users')->onDelete('cascade');
         });
+        
+        
     }
 
     /**

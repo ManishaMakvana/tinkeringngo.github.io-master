@@ -7,8 +7,11 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\managerController;
+use App\Http\Controllers\usermanagerController;
 
-
+use App\Http\Controllers\ActivityController;
 
 Route::get('/', function () {
     return view('home'); // Assuming your Blade file is named home.blade.php
@@ -28,6 +31,11 @@ Route::get('/program', [ProgramController::class, 'showProgramDashboard'])
     ->name('program')
     ->middleware('auth');
 
+    
+
+   
+
+    
 // Program Routes
 Route::get('/program', [ProgramController::class, 'showProgramDashboard'])->name('program');
 Route::get('/admin/add-module', [ProgramController::class, 'create'])->name('admin.createProgram');
@@ -85,4 +93,42 @@ Route::get('/admin/modules/{id}/edit', [ProgramController::class, 'edit'])->name
 Route::put('/admin/modules/{id}', [ProgramController::class, 'update'])->name('admin.modules.update');
 
 Route::delete('/admin/modules/{id}', [ProgramController::class, 'destroy'])->name('admin.modules.destroy');
+
+Route::get('/reports/create', [ReportController::class, 'create'])->name('reports.create');
+
+Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
+
+
+Route::get('/manager/projectmanager', function () {
+    return view('manager.projectmanager');
+})->name('manager.projectmanager');
+
+
+Route::get('/manager/activities', function () {
+    return view('manager.activities');
+})->name('activities.index');
+
+
+
+Route::get('/manager/projectmanager', [usermanagerController::class, 'index'])->name('manager.projectmanager');
+
+    Route::get('/usermanager', [usermanagerController::class, 'index'])->name('manager.usermanager');
+    Route::get('/usermanager/create', [usermanagerController::class, 'create'])->name('manager.createUser');
+    Route::post('/usermanager/store', [usermanagerController::class, 'store'])->name('manager.storeUser');
+    Route::get('/usermanager/edit/{id}', [usermanagerController::class, 'edit'])->name('manager.editUser');
+    Route::put('/usermanager/update/{id}', [usermanagerController::class, 'update'])->name('manager.updateUser');
+    Route::delete('/usermanager/delete/{id}', [usermanagerController::class, 'destroy'])->name('manager.deleteUser');
+
+
+
+
+  
+        Route::get('/manger/activities', [ActivityController::class, 'index'])->name('manger.activities.index');
+    
+    
+
+
+
+    Route::get('/manager/activities/create', [ActivityController::class, 'create'])->name('manager.activities.create');
+    Route::post('/manager/activities', [ActivityController::class, 'store'])->name('manager.activities.store');
 

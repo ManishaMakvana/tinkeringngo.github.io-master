@@ -100,7 +100,7 @@
 <body>
 
     <header>
-        <h1> User Dashboard</h1>
+        <h1> Trainer Dashboard</h1>
         <div class="user-info">
            
            
@@ -116,6 +116,11 @@
     <div class="program-info">
         <p><strong>Program ID:</strong> {{ $program_id }}</p>
         <p><strong>Username:</strong> {{ $username }}</p>
+
+        <div style="text-align: right; margin: 20px;">
+    <a href="{{ route('reports.create', ['program_id' => $program_id, 'username' => $username]) }}" class="btn btn-primary">Create Report</a>
+</div>
+
 
     </div>
 
@@ -137,6 +142,7 @@
             </tr>
         </thead>
         <tbody>
+
             @foreach($programs as $program)
                 <tr>
                     <td>{{ $program->id }}</td>
@@ -150,7 +156,11 @@
                     <td><a href="{{ $program->youtube_voiceover }}" target="_blank">Watch</a></td>
                     <td><a href="{{ $program->google_slide }}" target="_blank">View</a></td>
                     <td><a href="{{ $program->worksheet }}" target="_blank">Download</a></td>
+            
                 </tr>
+
+                
+
             @endforeach
         </tbody>
     </table>
